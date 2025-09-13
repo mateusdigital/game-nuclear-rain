@@ -1,4 +1,12 @@
+_build/
+_dist/
+_out/
+
+
+
 # Created by https://www.toptal.com/developers/gitignore/api/nextjs
+
+
 # Edit at https://www.toptal.com/developers/gitignore?templates=nextjs
 
 ### NextJS ###
@@ -183,4 +191,3 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node
-
