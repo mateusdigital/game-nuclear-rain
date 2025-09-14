@@ -47,9 +47,7 @@ if ($Environment -eq "--production") {
 else {
   $REMOTE_USER   = "mateusdigital"
   $REMOTE_HOST   = "$env:DEPLOY_HOST";
-  if (-not $REMOTE_HOST) { $REMOTE_HOST = "192.168.64.2" }
-
-  $REMOTE_FOLDER = "/var/www/mateus.xyz/html/${PROJECT_NAME}";
+  $REMOTE_FOLDER = "/var/www/mateus.digital/html/${PROJECT_NAME}";
 }
 
 $REMOTE_SERVER = "$REMOTE_USER@$REMOTE_HOST";
@@ -62,10 +60,15 @@ if (-Not (Test-Path $SOURCE_FOLDER)) {
 
 # -------------------------------------------------------------------------
 Write-Host "Deploying files to ${REMOTE_SERVER}:${REMOTE_FOLDER}";
-
 ssh "$REMOTE_SERVER" "mkdir -p $REMOTE_FOLDER";
-rsync -avz -e ssh     `
-  "${SOURCE_FOLDER}/" `
-  "${REMOTE_SERVER}:${REMOTE_FOLDER}";
 
+if(-not $IsWindows) {
+  rsync -avz -e ssh                     `
+    "${SOURCE_FOLDER}/"                 `
+    "${REMOTE_SERVER}:${REMOTE_FOLDER}" `
+  ;
+}
+else {
+  scp -r -C -p "$SOURCE_FOLDER/*" "${REMOTE_SERVER}:${REMOTE_FOLDER}/";
+}
 Write-Host "Deploy complete!"

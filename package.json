@@ -2,7 +2,7 @@
   "name": "nuclear-rain",
   "description": "​The Nuclear Rain is a small Atari's homage created by mateus.digital",
   "version": "2.0.0",
-  "build": 14,
+  "build": 15,
   "repository": {
     "type": "git",
     "url": "https://github.com/mateusdigital/game-nuclear-rain.git"
